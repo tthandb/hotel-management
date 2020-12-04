@@ -12,7 +12,7 @@ const Customer = {
   selectOne: (id, callback) => {
     const query =
       'SELECT customer_id, first_name, last_name, address, city, country, email, phone FROM customers WHERE customer_id=? ORDER BY customer_id ASC;'
-    connection.execute(query, [id], (err, results, fields) => {
+    connection.execute(query, [id], (err, results) => {
       if (err) throw err
       callback(results)
     })

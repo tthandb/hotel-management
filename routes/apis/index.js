@@ -1,0 +1,20 @@
+const router = require('express').Router()
+const usersRoutes = require('./users')
+const reservationRoutes = require('./reservations')
+const customersRoutes = require('./customers')
+const roomRoutes = require('./rooms')
+const currentInfoRoutes = require('./currentDate')
+const loginRoute = require('./login')
+const logoutRoute = require('./logout')
+const roomTypesRoutes = require('./roomTypes')
+
+router.use('/login', loginRoute)
+router.use('/logout', logoutRoute)
+router.use('/users', usersRoutes)
+router.use('/customers', customersRoutes)
+router.use('/current', currentInfoRoutes)
+router.use('/reservations', reservationRoutes)
+router.use('/rooms', roomRoutes)
+router.use('/room/types', roomTypesRoutes)
+
+module.exports = router
