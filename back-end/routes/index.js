@@ -1,6 +1,5 @@
 const router = require('express').Router()
 
-router.use('/customer', require('./customers'))
 router.use('/hotelInformation', require('./hotelInformation'))
 router.use('/invoice', require('./invoices'))
 router.use('/login', require('./login'))
