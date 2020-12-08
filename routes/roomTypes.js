@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const roomTypeController = require('../controllers/roomTypeController')
 
+// /roomType
+
 router
     .route('/')
     .get(roomTypeController.getAllRoomTypes)

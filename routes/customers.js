@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const customerController = require('../controllers/customerController')
-
+// /customer
 router
     .route("/")
     .post(customerController.createNewCustomer)
@@ -12,3 +12,5 @@ router
     .put(customerController.updateCustomerById)
     .delete(customerController.deleteCustomerById);
 
+
+module.exports = router

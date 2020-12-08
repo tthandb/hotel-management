@@ -4,7 +4,7 @@ const passport = require('passport')
 require('./config/passportConfig')(passport) // pass passport for configuration
 const app = express()
 const session = require('express-session')
-const routes = require('./routes_backup')
+const routes = require('./routes')
 const sessionStore = require('./config/promiseConnection')
 const PORT = process.env.PORT
 if (process.env.NODE_ENV === 'production') {
@@ -24,6 +24,7 @@ app.use(
       }
     })
 )
+
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(routes)

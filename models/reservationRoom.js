@@ -20,7 +20,7 @@ const ReservationRoom = {
         })
   },
   selectArrivals: (conditions, callback) => {
-    formattedConditions = conditions.join(' && ')
+    const formattedConditions = conditions.join(' && ')
     const query =
         "SELECT r.reservation_id, CONCAT(c.first_name, ' ', c.last_name) AS name, " +
         "rr.res_room_id, rr.room_type_id, " +

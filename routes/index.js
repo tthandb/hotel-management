@@ -1,7 +1,13 @@
 const router = require('express').Router()
 
-const login = require('./login')
-const logout = require('./logout')
+router.use('/customer', require('./customers'))
+router.use('/hotelInformation', require('./hotelInformation'))
+router.use('/invoice', require('./invoices'))
+router.use('/login', require('./login'))
+router.use('/logout', require('./logout'))
+router.use('/reservationRoom', require('./reservationRooms'))
+router.use('/reservation', require('./reservations'))
+router.use('/room', require('./rooms'))
+router.use('/roomType', require('./roomTypes'))
 
-router.use('/login', login)
-router.use('/logout', logout)
+module.exports = router

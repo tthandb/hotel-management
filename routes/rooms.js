@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const roomController = require('../controllers/roomController')
+// /room
 
 router
     .route('/')

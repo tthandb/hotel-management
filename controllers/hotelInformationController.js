@@ -1,4 +1,4 @@
-import hotelInfo from "../models/hotelInfo";
+const hotelInfo = require("../models/hotelInfo");
 
 module.exports = {
   getInformation: (req, res) => {
