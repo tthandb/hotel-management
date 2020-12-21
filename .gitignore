@@ -41,6 +41,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+.idea/
 
 # TypeScript v1 declaration files
 typings/
@@ -70,7 +71,7 @@ typings/
 yarn.lock
 package-lock.json
 
-# ignore the client/build folder 
+# ignore the client/build folder
 build/
 
 # todo file for tracking local tasks
