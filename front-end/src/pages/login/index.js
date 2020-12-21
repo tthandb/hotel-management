@@ -36,6 +36,7 @@ class Login extends Component {
           <div className="container">
             <label htmlFor="username"><b>Username</b></label>
             <input
+                className="username"
                 type="text"
                 placeholder="Enter Username"
                 name="username"
@@ -44,6 +45,7 @@ class Login extends Component {
                 required/>
             <label htmlFor="password"><b>Password</b></label>
             <input
+                className="password"
                 type="password"
                 placeholder="Enter Password"
                 name="password"

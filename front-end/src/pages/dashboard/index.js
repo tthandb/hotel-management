@@ -4,7 +4,16 @@ import {Link} from 'react-router-dom'
 class Dashboard extends React.Component {
   render() {
     return (
-        <div>Dashboard</div>
+        <>
+          <ul>
+            <p>Reservation</p>
+            <li>
+              <Link to='reserve/new'>
+                New reservation
+              </Link>
+            </li>
+          </ul>
+        </>
     )
   }
 }

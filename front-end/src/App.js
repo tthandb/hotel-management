@@ -1,14 +1,18 @@
 import React from 'react'
-
 import authenticationApi from './utils/api/authenticationApi'
 import {user, UserContext} from "./userContext";
 import {Switch, Redirect, BrowserRouter} from 'react-router-dom'
 import Login from "./pages/login";
 import Dashboard from "./pages/dashboard";
+import NewReservation from "./pages/newReservation";
+import RegistrationForm from "./components/registrationForm";
+import UpdateReservation from "./pages/updateReservation";
+import Arrivals from "./pages/arrivals";
+import Billing from "./pages/billing";
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.postUserLogin = userData => {
       if (userData) {
         authenticationApi.postUserLogin(userData, (err, res) => {
@@ -43,7 +47,10 @@ class App extends React.Component {
         <UserContext.Provider value={this.state}>
           <BrowserRouter>
             {/*{user.access_id === 0 ? (<><Redirect to={'/'}/> <Login/></>) : (<></>)}*/}
-            <Dashboard/>
+            {/*<NewReservation/>*/}
+            {/*<UpdateReservation/>*/}
+            <Billing/>
+            {/*<Dashboard/>*/}
           </BrowserRouter>
         </UserContext.Provider>
 
