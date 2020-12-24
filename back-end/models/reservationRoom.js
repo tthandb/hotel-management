@@ -107,7 +107,7 @@ const ReservationRoom = {
     const query =
         "SELECT rr.res_room_id, rr.room_type_id, DATE_FORMAT(rr.check_in_date, '%b %d, %Y') AS check_in_date, " +
         "DATE_FORMAT(rr.check_out_date, '%b %d, %Y') AS check_out_date, rr.checked_in, rr.checked_out, rr.adults, " +
-        "IFNULL(rm.room_num, 'Not Set') AS room_num, rr.confirmation_code, rr.comments, rt.type, rt.rate " +
+        "IFNULL(rm.room_num, 'Not Set') AS room_num, rr.comments, rt.type, rt.rate " +
         "FROM res_rooms AS rr INNER JOIN room_types AS rt ON rr.room_type_id=rt.room_type_id " +
         "LEFT JOIN rooms AS rm ON rm.room_id=rr.room_id " +
         "WHERE rr.reservation_id=?;"
@@ -121,7 +121,7 @@ const ReservationRoom = {
     const query =
         "SELECT r.reservation_id, DATE_FORMAT(rr.check_in_date, '%b %d, %Y') AS check_in_date, " +
         "DATE_FORMAT(rr.check_out_date, '%b %d, %Y') AS check_out_date, rm.room_num, " +
-        "rr.confirmation_code, rr.comments, rt.type, c.first_name, c.last_name FROM res_rooms AS rr " +
+        "rr.comments, rt.type, c.first_name, c.last_name FROM res_rooms AS rr " +
         "INNER JOIN room_types AS rt ON rr.room_type_id=rt.room_type_id " +
         "INNER JOIN rooms AS rm ON rm.room_id=rr.room_id " +
         "INNER JOIN reservations AS r ON rr.reservation_id=r.reservation_id " +
