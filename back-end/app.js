@@ -1,8 +1,10 @@
 require('dotenv').config()
 const express = require('express')
 const passport = require('passport')
+const cors = require('cors')
 require('./config/passportConfig')(passport) // pass passport for configuration
 const app = express()
+app.use(cors())
 const session = require('express-session')
 const routes = require('./routes')
 const sessionStore = require('./config/promiseConnection')

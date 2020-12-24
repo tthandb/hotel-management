@@ -1,4 +1,5 @@
 import axios from "axios"
+axios.defaults.baseURL='http://localhost:2000'
 
 const api = {
   getReservation: (id) => {

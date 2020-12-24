@@ -31,18 +31,10 @@ class Billing extends Component {
       dueOut: this.state.dueOut,
       checkedOut: this.state.checkedOut
     }
-    const fake = {
-      firstname: undefined,
-      lastname: undefined,
-      roomNumber: 102,
-      stayOver: false,
-      dueOut: false,
-      checkedOut: false
-    }
+
     api
-        .getDepartures(fake)
+        .getDepartures(criteria)
         .then(res => {
-          console.log('wibu', res)
           this.setState({departuresArray: res})
         })
         .catch(err => console.log(err))
@@ -71,7 +63,7 @@ class Billing extends Component {
   }
 
   componentDidMount() {
-    // this.makeAxiosCall()
+    this.makeAxiosCall()
   }
 
   handleInputChange = event => {
@@ -228,7 +220,7 @@ class Billing extends Component {
                 </div>
               </div>
               <div>
-                <button onClick={this.handleFormSubmit}/>
+                <button onClick={this.handleFormSubmit}>Search</button>
               </div>
             </div>
             <div>

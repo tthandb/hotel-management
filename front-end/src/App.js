@@ -9,6 +9,7 @@ import RegistrationForm from "./components/registrationForm";
 import UpdateReservation from "./pages/updateReservation";
 import Arrivals from "./pages/arrivals";
 import Billing from "./pages/billing";
+import Payment from "./pages/payment";
 
 class App extends React.Component {
   constructor(props) {
@@ -49,8 +50,9 @@ class App extends React.Component {
             {/*{user.access_id === 0 ? (<><Redirect to={'/'}/> <Login/></>) : (<></>)}*/}
             {/*<NewReservation/>*/}
             {/*<UpdateReservation/>*/}
-            <Billing/>
+            {/*<Billing/>*/}
             {/*<Dashboard/>*/}
+            <Payment/>
           </BrowserRouter>
         </UserContext.Provider>
 
