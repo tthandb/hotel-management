@@ -3,7 +3,7 @@ import api from '../utils/api/api'
 import Header from '../components/header'
 import { Redirect } from 'react-router-dom'
 
-class ReservationComfirmation extends Component {
+class ReservationConfirmation extends Component {
   state = {
     ReservationInfo: {},
     RoomInfo: [],
@@ -166,4 +166,4 @@ class ReservationComfirmation extends Component {
     )
   }
 }
-export default ReservationComfirmation
+export default ReservationConfirmation

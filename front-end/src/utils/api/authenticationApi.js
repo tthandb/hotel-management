@@ -6,9 +6,9 @@ const authenticationApi = {
         .then(res => res.data)
         .catch(err => console.log(err))
   },
-  postUserLogin: (user, done) => {
+  postUserLogin: (user, callback) => {
     return axios.post('/login', user)
-        .then(res => res.user.username ? done(false, res.data) : done(false, 'error logging in'))
+        .then(res => res.data.user.username ? callback(false, res.data) : callback(false, 'error logging in'))
   },
   getLoggedOut: () => {
     return axios.get('/logout')

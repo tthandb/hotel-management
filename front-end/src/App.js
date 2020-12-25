@@ -16,18 +16,22 @@ import AllReservations from "./pages/allReservations";
 import Inhouse from "./pages/inhouse";
 import Housekeeping from "./pages/housekeeping";
 import {PrivateAccessRoute} from "./components/privateAccessRoute";
+import ReservationConfirmation from "./pages/reservationConfirmation";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.postUserLogin = userData => {
-      if (userData) {
+       if (userData) {
         authenticationApi.postUserLogin(userData, (err, res) => {
-          if (err === true) return console.log('failed to login')
+          if (err === true) {
+            return console.log('Failed to log in')
+          }
           this.setState({user: res.user})
-        }).then(r => console.log(r))
-      }
+        }).then(console.log('Login successfully'))
+       }
     }
+
     this.getUserLogout = event => {
       event.preventDefault()
       authenticationApi.getLoggedOut().then(this.getUserStatus)
@@ -66,6 +70,72 @@ class App extends React.Component {
                       strict
                       path='/'
                       component={Dashboard}
+                      accessId='1'
+                    />
+                     <PrivateAccessRoute
+                      exact
+                      path='/reserve/new'
+                      component={NewReservation}
+                      accessId='1'
+                    />
+                    <PrivateAccessRoute
+                      exact
+                      path='/reserve/allreservations'
+                      component={AllReservations}
+                      accessId='1'
+                    />
+                    <PrivateAccessRoute
+                      exact
+                      path='/reserve/updatereservation'
+                      component={UpdateReservation}
+                      accessId='1'
+                    />
+                    <PrivateAccessRoute
+                      exact
+                      path='/reservationcomfirmation'
+                      component={ReservationConfirmation}
+                      accessId='1'
+                    />
+                    <PrivateAccessRoute
+                      exact
+                      path='/frontdesk/arrivals'
+                      component={Arrivals}
+                      accessId='1'
+                    />
+                    <PrivateAccessRoute
+                      exact
+                      path='/frontdesk/inhouse'
+                      component={Inhouse}
+                      accessId='1'
+                    />
+                    <PrivateAccessRoute
+                      exact
+                      path='/frontdesk/maintenance'
+                      component={Maintenance}
+                      accessId='1'
+                    />
+                    <PrivateAccessRoute
+                      exact
+                      path='/cashiering/billing'
+                      component={Billing}
+                      accessId='1'
+                    />
+                    <PrivateAccessRoute
+                      exact
+                      path='/cashiering/payment'
+                      component={Payment}
+                      accessId='1'
+                    />
+                    <PrivateAccessRoute
+                      exact
+                      path='/reports/housekeeping'
+                      component={Housekeeping}
+                      accessId='1'
+                    />
+                    <PrivateAccessRoute
+                      exact
+                      path='/reports/houseStatus'
+                      component={HouseStatus}
                       accessId='1'
                     />
                   </Switch>
