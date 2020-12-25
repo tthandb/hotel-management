@@ -1,5 +1,4 @@
-import roomIssue from "../models/roomIssue";
-
+const roomIssue = require('../models/roomIssue')
 module.exports = {
   getAllRoomIssues: (req, res) => {
     roomIssue.selectAll(data => {

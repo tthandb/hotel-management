@@ -10,14 +10,12 @@ class Login extends Component {
       this.setState({[name]: value})
     }
     this.handleSubmit = event => {
-
       event.preventDefault()
       if (!this.isFormInValid()) {
         this.context.postUserLogin({
           username: this.state.username,
           password: this.state.password
         })
-        alert('run')
       }
     }
     this.state = {

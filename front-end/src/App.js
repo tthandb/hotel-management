@@ -10,6 +10,12 @@ import UpdateReservation from "./pages/updateReservation";
 import Arrivals from "./pages/arrivals";
 import Billing from "./pages/billing";
 import Payment from "./pages/payment";
+import Maintenance from "./pages/maintaince";
+import HouseStatus from "./pages/houseStatus";
+import AllReservations from "./pages/allReservations";
+import Inhouse from "./pages/inhouse";
+import Housekeeping from "./pages/housekeeping";
+import {PrivateAccessRoute} from "./components/privateAccessRoute";
 
 class App extends React.Component {
   constructor(props) {
@@ -47,12 +53,35 @@ class App extends React.Component {
     return (
         <UserContext.Provider value={this.state}>
           <BrowserRouter>
+            {user.access_id ===0? (
+                <>
+                  <Redirect to = {'/'}/>
+                  <Login/>
+                </>
+            ):(
+                <div>
+                  <Switch>
+                    <PrivateAccessRoute
+                         exact
+                      strict
+                      path='/'
+                      component={Dashboard}
+                      accessId='1'
+                    />
+                  </Switch>
+                </div>
+            )}
             {/*{user.access_id === 0 ? (<><Redirect to={'/'}/> <Login/></>) : (<></>)}*/}
             {/*<NewReservation/>*/}
             {/*<UpdateReservation/>*/}
             {/*<Billing/>*/}
             {/*<Dashboard/>*/}
-            <Payment/>
+            {/*<Payment/>*/}
+            {/*<Maintenance/>*/}
+            {/*<HouseStatus/>*/}
+            {/*<AllReservations/>*/}
+            {/*<Inhouse/>*/}
+            {/*<Housekeeping/>*/}
           </BrowserRouter>
         </UserContext.Provider>
 

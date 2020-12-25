@@ -8,8 +8,8 @@ const ReservationRoom = {
         'COALESCE(SUM(CASE WHEN rr.check_in_date<@input_date && rr.check_out_date>@input_date THEN 1 ELSE 0 END), 0) AS stayovers, ' +
         'COALESCE(SUM(CASE WHEN rr.check_out_date=@input_date && rr.checked_out=0 THEN 1 ELSE 0 END), 0) AS departuresPending, ' +
         'COALESCE(SUM(CASE WHEN rr.check_out_date=@input_date && rr.checked_out=1 THEN 1 ELSE 0 END), 0) AS departuresActual, ' +
-        'COALESCE(SUM(CASE WHEN rr.check_in_date=@input_date && rr.checked_in=0 && rr.active=1 THEN 1 ELSE 0 END), 0) AS arridataPending, ' +
-        'COALESCE(SUM(CASE WHEN rr.check_in_date=@input_date && rr.checked_in=1 THEN 1 ELSE 0 END), 0) AS arridataActual FROM res_rooms AS rr ' +
+        'COALESCE(SUM(CASE WHEN rr.check_in_date=@input_date && rr.checked_in=0 && rr.active=1 THEN 1 ELSE 0 END), 0) AS arrivalsPending, ' +
+        'COALESCE(SUM(CASE WHEN rr.check_in_date=@input_date && rr.checked_in=1 THEN 1 ELSE 0 END), 0) AS arrivalsActual FROM res_rooms AS rr ' +
         'WHERE rr.active=1 && ' +
         '(rr.check_in_date<@input_date && rr.check_out_date>@input_date) ' +
         '|| rr.check_out_date=@input_date || rr.check_in_date=@input_date;'
