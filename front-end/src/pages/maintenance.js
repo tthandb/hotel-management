@@ -135,7 +135,7 @@ class Maintenance extends Component {
   render () {
     return (
       <>
-        <Header>MAINTENANCE</Header>
+        <Header title='MAINTENANCE'/>
         <div>
           <div>
             <div>

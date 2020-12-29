@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import moment from 'moment'
 import api from '../utils/api/api'
 import Header from '../components/header'
+
 const today = moment().format('YYYY-MM-DD')
 
 class HouseStatus extends Component {
@@ -23,172 +24,117 @@ class HouseStatus extends Component {
 
   makeAxiosCall = () => {
     api
-      .getHouseStatus(this.state.date)
-      .then(res =>
-      {
-        this.setState({
-          roomsToSell: res.rooms[0].roomsToSell,
-          cleanVacant: res.rooms[0].cleanVacant,
-          cleanOccupied: res.rooms[0].cleanOccupied,
-          dirtyVacant: res.rooms[0].dirtyVacant,
-          dirtyOccupied: res.rooms[0].dirtyOccupied,
-          stayovers: res.reservationRooms[0].stayovers,
-          departuresPending: res.reservationRooms[0].departuresPending,
-          departuresActual: res.reservationRooms[0].departuresActual,
-          arrivalsPending: res.reservationRooms[0].arrivalsPending,
-          arrivalsActual: res.reservationRooms[0].arrivalsActual,
-          minAvailableTonight:
-            Number(res.rooms[0].roomsToSell) -
-            Number(res.reservationRooms[0].stayovers) -
-            Number(res.reservationRooms[0].arrivalsPending) -
-            Number(res.reservationRooms[0].arrivalsActual),
-          maxOccupiedTonight:
-            Number(res.reservationRooms[0].stayovers) +
-            Number(res.reservationRooms[0].arrivalsPending) +
-            Number(res.reservationRooms[0].arrivalsActual)
-        })}
-      )
-      .catch(err => console.log(err))
+        .getHouseStatus(this.state.date)
+        .then(res => {
+              this.setState({
+                roomsToSell: res.rooms[0].roomsToSell,
+                cleanVacant: res.rooms[0].cleanVacant,
+                cleanOccupied: res.rooms[0].cleanOccupied,
+                dirtyVacant: res.rooms[0].dirtyVacant,
+                dirtyOccupied: res.rooms[0].dirtyOccupied,
+                stayovers: res.reservationRooms[0].stayovers,
+                departuresPending: res.reservationRooms[0].departuresPending,
+                departuresActual: res.reservationRooms[0].departuresActual,
+                arrivalsPending: res.reservationRooms[0].arrivalsPending,
+                arrivalsActual: res.reservationRooms[0].arrivalsActual,
+                minAvailableTonight:
+                    Number(res.rooms[0].roomsToSell) -
+                    Number(res.reservationRooms[0].stayovers) -
+                    Number(res.reservationRooms[0].arrivalsPending) -
+                    Number(res.reservationRooms[0].arrivalsActual),
+                maxOccupiedTonight:
+                    Number(res.reservationRooms[0].stayovers) +
+                    Number(res.reservationRooms[0].arrivalsPending) +
+                    Number(res.reservationRooms[0].arrivalsActual)
+              })
+            }
+        )
+        .catch(err => console.log(err))
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.makeAxiosCall()
   }
 
   handleDateChange = event => {
-    this.setState({ date: event.target.value }, () => {
+    this.setState({date: event.target.value}, () => {
       this.makeAxiosCall()
     })
   }
 
-  render () {
+  render() {
     return (
-      <>
-        <Header>HOUSE STATUS</Header>
-        <div>
+        <>
+          <Header title='HOUSE STATUS'/>
           <div>
             <div>
-              <div>Room Summary</div>
               <div>
-                <div>
-                  Total Rooms to Sell:
-                </div>
-                <div>
-                  {this.state.roomsToSell}
-                </div>
-              </div>
-              <div>
-                <div>
-                  Min. Available Tonight:
-                </div>
-                <div>
-                  {this.state.minAvailableTonight}
-                </div>
-              </div>
-              <div>
-                <div>
-                  Max. Occupied Tonight:
-                </div>
-                <div>
-                  {this.state.maxOccupiedTonight}
-                </div>
-              </div>
-            </div>
-            <div>
-              <div>Activity</div>
-              <div>
-                <div>
-                  Stayovers:
-                </div>
-                <div>
-                  {this.state.stayovers}
-                </div>
-              </div>
-              <div>
-                <div>
-                  Departures Pending:{' '}
-                </div>
-                <div>
-                  {this.state.departuresPending}
-                </div>
-              </div>
-              <div>
-                <div>
-                  Departures Actual:
-                </div>
-                <div>
-                  {this.state.departuresActual}
-                </div>
-              </div>
-              <div>
-                <div>
-                  Arrivals Pending:
-                </div>
-                <div>
-                  {this.state.arrivalsPending}
-                </div>
-              </div>
-              <div>
-                <div>
-                  Arrivals Actual:
-                </div>
-                <div>
-                  {this.state.arrivalsActual}
-                </div>
-              </div>
-            </div>
-            <div>
-              <div>Room Status-Housekeeping</div>
-              <div>
-                <div></div>
-                <div>
-                  Vacant
-                </div>
-                <div>
-                  Occupied
-                </div>
-              </div>
-              <div>
-                <div>
-                  Clean
-                </div>
-                <div>
-                  {this.state.cleanVacant}
-                </div>
-                <div>
-                  {this.state.cleanOccupied}
-                </div>
-              </div>
-              <div>
-                <div>
-                  Dirty
-                </div>
-                <div>
-                  {this.state.dirtyVacant}
-                </div>
-                <div>
-                  {this.state.dirtyOccupied}
-                </div>
+                Date:
+                <input
+                    type='date'
+                    name='date'
+                    value={this.state.date}
+                    onChange={this.handleDateChange}
+                />
               </div>
             </div>
           </div>
-        </div>
 
-        <div>
-          <div>
-            <div >
-              Date:
-              <input
-                type='date'
-                name='date'
-                value={this.state.date}
-                onChange={this.handleDateChange}
-              />
-            </div>
-          </div>
-        </div>
-      </>
+          <table>
+            Room summary
+            <tr>
+              <td>Total rooms to sell</td>
+              <td>{this.state.roomsToSell}</td>
+            </tr>
+            <tr>
+              <td>Min available tonight</td>
+              <td>{this.state.minAvailableTonight}</td>
+            </tr>
+            <tr>
+              <td>Max occupied tonight</td>
+              <td>{this.state.maxOccupiedTonight}</td>
+            </tr>
+            Activity
+            <tr>
+              <td>Stay-overs</td>
+              <td>{this.state.stayovers}</td>
+            </tr>
+            <tr>
+              <td>Departures pending</td>
+              <td>{this.state.departuresPending}</td>
+            </tr>
+            <tr>
+              <td>Departures actual</td>
+              <td>{this.state.departuresActual}</td>
+            </tr>
+            <tr>
+              <td>Arrivals pending</td>
+              <td>{this.state.arrivalsPending}</td>
+            </tr>
+            <tr>
+              <td>Arrivals actual</td>
+              <td>{this.state.arrivalsActual}</td>
+            </tr>
+            Room Status-Housekeeping
+            <tr>
+              <th/>
+              <th>Vacant</th>
+              <th>Occupied</th>
+            </tr>
+            <tr>
+              <td>Clean</td>
+              <td>{this.state.cleanVacant}</td>
+              <td>{this.state.cleanOccupied}</td>
+            </tr>
+            <tr>
+              <td>Dirty</td>
+              <td>{this.state.dirtyVacant}</td>
+              <td>{this.state.dirtyOccupied}</td>
+            </tr>
+          </table>
+        </>
     )
   }
 }
+
 export default HouseStatus

@@ -112,7 +112,7 @@ class Housekeeping extends Component {
   render () {
     return (
       <>
-        <Header>HOUSEKEEPING</Header>
+        <Header title='HOUSE KEEPING'/>
         <div>
           <div>
             <div>
@@ -200,7 +200,6 @@ class Housekeeping extends Component {
                 </div>
               </div>
               <div>
-                <div></div>
                 <div>
                   Departed
                 </div>

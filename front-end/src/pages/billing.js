@@ -130,7 +130,7 @@ class Billing extends Component {
     }
     return (
         <>
-          <Header>FINANCE</Header>
+          <Header title='FINANCE'/>
           <div>
             <div>
               <div>

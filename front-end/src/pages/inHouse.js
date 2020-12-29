@@ -3,7 +3,7 @@ import Header from '../components/header'
 import api from '../utils/api/api'
 import { Redirect } from 'react-router-dom'
 
-class Inhouse extends Component {
+class InHouse extends Component {
   state = {
     arrivaldate: '',
     departuredate: '',
@@ -63,7 +63,7 @@ class Inhouse extends Component {
 
     return (
       <>
-        <Header>IN-HOUSE GUESTS</Header>
+        <Header title='IN-HOUSE GUESTS'/>
         <div>
           <div>
             <div>
@@ -159,4 +159,4 @@ class Inhouse extends Component {
   }
 }
 
-export default Inhouse
+export default InHouse

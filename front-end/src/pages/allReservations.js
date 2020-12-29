@@ -86,7 +86,7 @@ class AllReservations extends Component {
 
     return (
       <>
-        <Header>ALL RESERVATIONS</Header>
+        <Header title='ALL RESERVATIONS'/>
         <div>
           <div>
             <div >

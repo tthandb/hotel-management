@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
-import './login.css'
 import {UserContext} from "../userContext";
-
+import '../assets/css/login.css'
 class Login extends Component {
   constructor() {
     super()
@@ -30,29 +29,27 @@ class Login extends Component {
 
   render() {
     return (
+        <div className="container">
         <form onSubmit={e => this.handleSubmit(e)}>
-          <div className="container">
-            <label htmlFor="username"><b>Username</b></label>
-            <input
-                className="username"
-                type="text"
-                placeholder="Enter Username"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChange}
-                required/>
-            <label htmlFor="password"><b>Password</b></label>
-            <input
-                className="password"
-                type="password"
-                placeholder="Enter Password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChange}
-                required/>
+              <input
+                  className="username"
+                  type="text"
+                  placeholder="Enter Username"
+                  name="username"
+                  value={this.state.username}
+                  onChange={this.handleInputChange}
+                  required/>
+              <input
+                  className="password"
+                  type="password"
+                  placeholder="Enter Password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleInputChange}
+                  required/>
             <button className="login" type="submit" disabled={this.isFormInValid()}>Login</button>
-          </div>
         </form>
+        </div>
 
     )
   }
