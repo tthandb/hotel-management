@@ -6,7 +6,6 @@ import api from '../utils/api/api'
 import moment from 'moment'
 
 class AllReservations extends Component {
-  // Setting the initial values of this.state.username and this.state.password
   constructor () {
     super()
     this.handleFromChange = this.handleFromChange.bind(this)

@@ -1,13 +1,13 @@
 import {Link} from "react-router-dom";
 import React from "react";
 import {UserContext} from "../userContext";
-import '../assets/css/header.css'
+
 class Header extends React.Component {
   render() {
     return (
         <UserContext.Consumer>
           {({user, getUserLogout}) => (
-              <div className='headerContainer'>
+              <div>
                 <div>
                   <Link title='Return to Dashboard' to='/'>
                     Go back
