@@ -1,0 +1,36 @@
+.header-container {
+    overflow: hidden;
+    background-color: #f1f1f1;
+    padding: 20px 10px;
+    margin-bottom: 20px;
+}
+
+.header-left {
+    float: left;
+    width: 50%;
+}
+
+.header-left a {
+    float: left;
+    text-decoration: none;
+}
+
+.header-left h1 {
+
+    float: right;
+    padding: 12px 20px;
+}
+
+.header-right {
+    float: right;
+}
+
+.header-username, .logout-btn {
+    float: left;
+    margin: 20px;
+    padding: 10px
+}
+
+.header-username {
+    font-weight: 700;
+}

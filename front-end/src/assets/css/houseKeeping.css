@@ -1,0 +1,29 @@
+.house-keeping-container {
+  padding: 20px;
+  margin: auto;
+  width: 50%;
+  border: 1px;
+  border-style: dashed;
+}
+
+.house-keeping-container input, textarea, button {
+  padding: 10px;
+  margin: 10px
+}
+
+.house-keeping-container table {
+  table-layout: auto;
+  width: 100%; 
+}
+
+.house-keeping-container .check-box-container {
+  display: flex;
+  margin: 10px;
+}
+
+.house-keeping-container .check-box-container .check-box {
+  margin-right: 50px;
+}
+.house-keeping-container .button-container {
+  margin: 20px 0px;
+}

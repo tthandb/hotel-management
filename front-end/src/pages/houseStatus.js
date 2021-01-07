@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import moment from 'moment'
 import api from '../utils/api/api'
 import Header from '../components/header'
-
+import '../assets/css/houseStatus.css'
 const today = moment().format('YYYY-MM-DD')
 
 class HouseStatus extends Component {
@@ -24,32 +24,32 @@ class HouseStatus extends Component {
 
   makeAxiosCall = () => {
     api
-        .getHouseStatus(this.state.date)
-        .then(res => {
-              this.setState({
-                roomsToSell: res.rooms[0].roomsToSell,
-                cleanVacant: res.rooms[0].cleanVacant,
-                cleanOccupied: res.rooms[0].cleanOccupied,
-                dirtyVacant: res.rooms[0].dirtyVacant,
-                dirtyOccupied: res.rooms[0].dirtyOccupied,
-                stayovers: res.reservationRooms[0].stayovers,
-                departuresPending: res.reservationRooms[0].departuresPending,
-                departuresActual: res.reservationRooms[0].departuresActual,
-                arrivalsPending: res.reservationRooms[0].arrivalsPending,
-                arrivalsActual: res.reservationRooms[0].arrivalsActual,
-                minAvailableTonight:
-                    Number(res.rooms[0].roomsToSell) -
-                    Number(res.reservationRooms[0].stayovers) -
-                    Number(res.reservationRooms[0].arrivalsPending) -
-                    Number(res.reservationRooms[0].arrivalsActual),
-                maxOccupiedTonight:
-                    Number(res.reservationRooms[0].stayovers) +
-                    Number(res.reservationRooms[0].arrivalsPending) +
-                    Number(res.reservationRooms[0].arrivalsActual)
-              })
-            }
-        )
-        .catch(err => console.log(err))
+      .getHouseStatus(this.state.date)
+      .then(res => {
+        this.setState({
+          roomsToSell: res.rooms[0].roomsToSell,
+          cleanVacant: res.rooms[0].cleanVacant,
+          cleanOccupied: res.rooms[0].cleanOccupied,
+          dirtyVacant: res.rooms[0].dirtyVacant,
+          dirtyOccupied: res.rooms[0].dirtyOccupied,
+          stayovers: res.reservationRooms[0].stayovers,
+          departuresPending: res.reservationRooms[0].departuresPending,
+          departuresActual: res.reservationRooms[0].departuresActual,
+          arrivalsPending: res.reservationRooms[0].arrivalsPending,
+          arrivalsActual: res.reservationRooms[0].arrivalsActual,
+          minAvailableTonight:
+            Number(res.rooms[0].roomsToSell) -
+            Number(res.reservationRooms[0].stayovers) -
+            Number(res.reservationRooms[0].arrivalsPending) -
+            Number(res.reservationRooms[0].arrivalsActual),
+          maxOccupiedTonight:
+            Number(res.reservationRooms[0].stayovers) +
+            Number(res.reservationRooms[0].arrivalsPending) +
+            Number(res.reservationRooms[0].arrivalsActual)
+        })
+      }
+      )
+      .catch(err => console.log(err))
   }
 
   componentDidMount() {
@@ -57,31 +57,27 @@ class HouseStatus extends Component {
   }
 
   handleDateChange = event => {
-    this.setState({date: event.target.value}, () => {
+    this.setState({ date: event.target.value }, () => {
       this.makeAxiosCall()
     })
   }
 
   render() {
     return (
-        <>
-          <Header title='HOUSE STATUS'/>
+      <>
+        <Header title='HOUSE STATUS' />
+        <div className='house-status-container'>
           <div>
-            <div>
-              <div>
-                Date:
+            Date:
                 <input
-                    type='date'
-                    name='date'
-                    value={this.state.date}
-                    onChange={this.handleDateChange}
-                />
-              </div>
-            </div>
+              type='date'
+              name='date'
+              value={this.state.date}
+              onChange={this.handleDateChange}
+            />
           </div>
-
+          <h3>Room summary</h3>
           <table>
-            Room summary
             <tr>
               <td>Total rooms to sell</td>
               <td>{this.state.roomsToSell}</td>
@@ -94,7 +90,9 @@ class HouseStatus extends Component {
               <td>Max occupied tonight</td>
               <td>{this.state.maxOccupiedTonight}</td>
             </tr>
-            Activity
+          </table>
+          <h3>Activity</h3>
+          <table>
             <tr>
               <td>Stay-overs</td>
               <td>{this.state.stayovers}</td>
@@ -115,9 +113,11 @@ class HouseStatus extends Component {
               <td>Arrivals actual</td>
               <td>{this.state.arrivalsActual}</td>
             </tr>
-            Room Status-Housekeeping
+          </table>
+          <h3>Room Status-Housekeeping</h3>
+          <table>
             <tr>
-              <th/>
+              <th />
               <th>Vacant</th>
               <th>Occupied</th>
             </tr>
@@ -132,7 +132,8 @@ class HouseStatus extends Component {
               <td>{this.state.dirtyOccupied}</td>
             </tr>
           </table>
-        </>
+        </div>
+      </>
     )
   }
 }

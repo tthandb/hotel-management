@@ -4,12 +4,13 @@ import 'react-day-picker/lib/style.css'
 import { formatDate, parseDate } from 'react-day-picker/moment'
 
 export default class DateRange extends React.Component {
-  render () {
+  render() {
     const { from, to } = this.props
     const modifiers = { start: from, end: to }
 
     return (
       <>
+        Arrival{' '}
         <DayPickerInput
           render={props => <input {...props} />}
           value={from}

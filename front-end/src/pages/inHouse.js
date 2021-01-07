@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Header from '../components/header'
 import api from '../utils/api/api'
 import { Redirect } from 'react-router-dom'
-
+import '../assets/css/inHouse.css'
 class InHouse extends Component {
   state = {
     arrivaldate: '',
@@ -15,7 +15,7 @@ class InHouse extends Component {
     chosenReservationId: '',
     guestsArray: []
   }
-
+  
   makeAxiosCall = () => {
     const criteria = {
       firstname: this.state.firstname,
@@ -64,7 +64,7 @@ class InHouse extends Component {
     return (
       <>
         <Header title='IN-HOUSE GUESTS'/>
-        <div>
+        <div className='in-house-container'>
           <div>
             <div>
               <div>

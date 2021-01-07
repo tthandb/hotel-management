@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {UserContext} from "../userContext";
-import '../assets/scss/login.scss'
+import '../assets/css/login.css'
 
 class Login extends Component {
   constructor() {
@@ -31,8 +31,8 @@ class Login extends Component {
   render() {
     return (
         <form onSubmit={e => this.handleSubmit(e)}>
-          <div className="container">
-            <h2>Login</h2>
+          <div className="login-container">
+            <h2 className="login-title">Login</h2>
             <input
                 className="username"
                 type="text"
@@ -49,7 +49,7 @@ class Login extends Component {
                 value={this.state.password}
                 onChange={this.handleInputChange}
                 required/>
-            <button className="login" type="submit" disabled={this.isFormInValid()}>Login</button>
+            <button className="login-btn" type="submit" disabled={this.isFormInValid()}>Login</button>
           </div>
         </form>
 

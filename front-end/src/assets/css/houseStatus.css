@@ -1,0 +1,17 @@
+.house-status-container {
+  padding: 20px;
+  margin: auto;
+  width: 50%;
+  border: 1px;
+  border-style: dashed;
+}
+
+.house-status-container input, textarea, button {
+  padding: 10px;
+  margin: 10px
+}
+
+.house-status-container table {
+  table-layout: auto;
+  width: 100%; 
+}

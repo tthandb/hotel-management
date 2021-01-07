@@ -1,0 +1,12 @@
+.dashboard-container {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
+    padding: 100px 100px;
+}
+
+.dashboard-container div div a {
+    text-decoration: none;
+}
+
+

@@ -4,9 +4,9 @@ import Header from '../components/header'
 import DateRange from '../components/dateRange/dateRangeUpdate'
 import api from '../utils/api/api'
 import moment from 'moment'
-
+import '../assets/css/allReservations.css'
 class AllReservations extends Component {
-  constructor () {
+  constructor() {
     super()
     this.handleFromChange = this.handleFromChange.bind(this)
     this.handleToChange = this.handleToChange.bind(this)
@@ -20,7 +20,7 @@ class AllReservations extends Component {
     reservationChosen: false,
     chosenReservationId: ''
   }
-  showFromMonth () {
+  showFromMonth() {
     const { from, to } = this.state
     if (!from) {
       return
@@ -29,13 +29,13 @@ class AllReservations extends Component {
       this.to.getDayPicker().showMonth(from)
     }
   }
-  handleFromChange (sdate) {
+  handleFromChange(sdate) {
     this.setState({ sdate })
   }
-  handleToChange (edate) {
+  handleToChange(edate) {
     this.setState({ edate }, this.showFromMonth)
   }
-  handleChange (e) {
+  handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     })
@@ -71,7 +71,7 @@ class AllReservations extends Component {
       [name]: value
     })
   }
-  render () {
+  render() {
     if (this.state.reservationChosen) {
       localStorage.setItem('reservation_id', this.state.chosenReservationId)
       return (
@@ -85,27 +85,19 @@ class AllReservations extends Component {
 
     return (
       <>
-        <Header title='ALL RESERVATIONS'/>
-        <div>
+        <Header title='ALL RESERVATIONS' />
+        <div className='all-reservations-container'>
           <div>
-            <div >
-              Arrival
-            </div>
-            <div >
-              <DateRange
-                handleFromChange={this.handleFromChange}
-                handleToChange={this.handleToChange}
-                sdate={this.state.sdate}
-                edate={this.state.edate}
-              />
-            </div>
+            <DateRange
+              handleFromChange={this.handleFromChange}
+              handleToChange={this.handleToChange}
+              sdate={this.state.sdate}
+              edate={this.state.edate}
+            />
           </div>
-
           <div>
-            <div >
-              Last Name
-            </div>
             <div>
+              <label>Last Name</label>
               <input
                 type='text'
                 placeholder='Last Name'
@@ -115,9 +107,7 @@ class AllReservations extends Component {
               />
             </div>
             <div>
-              First Name
-            </div>
-            <div>
+              <label>First Name</label>
               <input
                 type='text'
                 placeholder='First Name'
@@ -126,42 +116,38 @@ class AllReservations extends Component {
                 onChange={this.handleInputChange}
               />
             </div>
-            <div>
-              <button onClick={this.handleFormSubmit}>Search</button>
-            </div>
+            <button onClick={this.handleFormSubmit}>Search</button>
           </div>
 
           <div>
-            <div >
-              <table>
-                <tbody>
-                  <tr>
-                    <th>Last Name</th>
-                    <th>First Name</th>
-                    <th>Arrival Date</th>
-                    <th>Departure Date</th>
-                    <th>Room Type</th>
-                    <th>Status</th>
-                  </tr>
+            <table>
+              <tbody>
+                <tr>
+                  <th>Last Name</th>
+                  <th>First Name</th>
+                  <th>Arrival Date</th>
+                  <th>Departure Date</th>
+                  <th>Room Type</th>
+                  <th>Status</th>
+                </tr>
 
-                  {this.state.resRooms.map(res => (
-                    <tr
-                      key={res.res_room_id}
-                      onClick={() =>
-                        this.handleChosenReservation(res.reservation_id)
-                      }
-                    >
-                      <td>{res.last_name}</td>
-                      <td>{res.first_name}</td>
-                      <td>{res.check_in_date}</td>
-                      <td>{res.check_out_date}</td>
-                      <td>{res.type}</td>
-                      <td>{res.active === 1 ? 'Active' : 'Cancelled'}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                {this.state.resRooms.map(res => (
+                  <tr
+                    key={res.res_room_id}
+                    onClick={() =>
+                      this.handleChosenReservation(res.reservation_id)
+                    }
+                  >
+                    <td>{res.last_name}</td>
+                    <td>{res.first_name}</td>
+                    <td>{res.check_in_date}</td>
+                    <td>{res.check_out_date}</td>
+                    <td>{res.type}</td>
+                    <td>{res.active === 1 ? 'Active' : 'Cancelled'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </>

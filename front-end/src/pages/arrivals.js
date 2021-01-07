@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 import api from '../utils/api/api'
 import Header from '../components/header'
-
+import '../assets/css/arrivals.css'
 const today = moment().format('YYYY-MM-DD')
 
 class Arrivals extends Component {
@@ -45,15 +45,13 @@ class Arrivals extends Component {
       .catch(err => console.log(err))
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.makeAxiosCall()
+    console.log(this.state.startDateRange);
   }
 
   handleInputChange = event => {
     const { name, value } = event.target
-    if (name === 'startDateRange' && value !== '<empty string>') {
-      return console.log('Must enter a valid date')
-    }
     this.setState({ [name]: value }, () => {
       this.makeAxiosCall()
     })
@@ -67,15 +65,14 @@ class Arrivals extends Component {
     this.setState({ arrivalsArray })
   }
 
-  printFunction () {
+  printFunction() {
     window.print()
   }
-
-  render () {
+  render() {
     return (
       <>
-        <Header title="ARRIVALS"/>
-        <div>
+        <Header title="ARRIVALS" />
+        <div className='arrivals-container'>
           <div>
             <div>
               <div>
@@ -83,7 +80,6 @@ class Arrivals extends Component {
               </div>
               <div>
                 <input
-                  className='form-control'
                   type='date'
                   placeholder='Date'
                   name='startDateRange'
@@ -128,101 +124,102 @@ class Arrivals extends Component {
               </div>
             </div>
           </div>
-        </div>
-        <div>
           <div>
             <div>
-              <div className='text-center font-weight-bold'>
-                <Link
-                  className='text-decoration-none'
-                  to='../../cashiering/billing'
-                >
-                  Pending departures
+              <div>
+                <div className='text-center font-weight-bold'>
+                  <Link
+                    className='text-decoration-none'
+                    to='../../cashiering/billing'
+                  >
+                    Pending departures
                 </Link>{' '}
                 by room type:
                 {this.state.pendingArray.length === 0
-                  ? ' None'
-                  : this.state.pendingArray.map((type, i) => (
+                    ? ' None'
+                    : this.state.pendingArray.map((type, i) => (
                       <span key={type.room_type_id}>
                         {i > 0 ? ', ' : ' '}({type.type}:{' '}
                         {type.pending_departures})
                       </span>
                     ))}
+                </div>
               </div>
+            </div>
+          </div>
+          <br></br>
+          <div>
+            <div>
+              <table>
+                <tbody>
+                  <tr>
+                    <th>Name</th>
+                    <th>Arrival Date</th>
+                    <th>Departure Date</th>
+                    <th>Room Type</th>
+                    <th>Room Number</th>
+                  </tr>
+                  {this.state.arrivalsArray.map((arrival, i) => (
+                    <tr key={arrival.res_room_id}>
+                      <td>{arrival.name}</td>
+                      <td>{arrival.check_in_date}</td>
+                      <td>{arrival.check_out_date}</td>
+                      <td>{arrival.type}</td>
+                      <td>
+                        {this.state.startDateRange === today ? (
+                          arrival.room_num === 'Not Set' ? (
+                            <select
+                              id={i}
+                              onChange={this.handleRoomChange}
+                              className='p-1'
+                            >
+                              <option value=''>Select a room</option>
+                              {this.state.roomsArray
+                                .filter(
+                                  roomtype =>
+                                    roomtype.room_type_id ===
+                                    arrival.room_type_id &&
+                                    roomtype.occupied === 0
+                                )
+                                .map(room => (
+                                  <option key={room.room_id} value={room.room_id}>
+                                    {room.room_num}{' '}
+                                    {room.clean === 0 && ' (dirty)'}
+                                  </option>
+                                ))}
+                            </select>
+                          ) : (
+                              arrival.room_num
+                            )
+                        ) : (
+                            'Not Set'
+                          )}
+                      </td>
+                      <td>
+                        {this.state.startDateRange === today &&
+                          (arrival.checked_in === 0 ? (
+                            <button
+                              onClick={() =>
+                                this.handleCheckIn(
+                                  arrival.res_room_id,
+                                  this.state.arrivalsArray[i].selectedRoom
+                                )
+                              }
+                            >
+                              Check In
+                            </button>
+                          ) : (
+                              'Checked In'
+                            ))}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
 
-        <div>
-          <div>
-            <table>
-              <tbody>
-                <tr>
-                  <th>Name</th>
-                  <th>Arrival Date</th>
-                  <th>Departure Date</th>
-                  <th>Room Type</th>
-                  <th>Room Number</th>
-                </tr>
-                {this.state.arrivalsArray.map((arrival, i) => (
-                  <tr key={arrival.res_room_id}>
-                    <td>{arrival.name}</td>
-                    <td>{arrival.check_in_date}</td>
-                    <td>{arrival.check_out_date}</td>
-                    <td>{arrival.type}</td>
-                    <td>
-                      {this.state.startDateRange === today ? (
-                        arrival.room_num === 'Not Set' ? (
-                          <select
-                            id={i}
-                            onChange={this.handleRoomChange}
-                            className='p-1'
-                          >
-                            <option value=''>Select a room</option>
-                            {this.state.roomsArray
-                              .filter(
-                                roomtype =>
-                                  roomtype.room_type_id ===
-                                    arrival.room_type_id &&
-                                  roomtype.occupied === 0
-                              )
-                              .map(room => (
-                                <option key={room.room_id} value={room.room_id}>
-                                  {room.room_num}{' '}
-                                  {room.clean === 0 && ' (dirty)'}
-                                </option>
-                              ))}
-                          </select>
-                        ) : (
-                          arrival.room_num
-                        )
-                      ) : (
-                        'Not Set'
-                      )}
-                    </td>
-                    <td>
-                      {this.state.startDateRange === today &&
-                        (arrival.checked_in === 0 ? (
-                          <button
-                            onClick={() =>
-                              this.handleCheckIn(
-                                arrival.res_room_id,
-                                this.state.arrivalsArray[i].selectedRoom
-                              )
-                            }
-                          >
-                            Check In
-                          </button>
-                        ) : (
-                          'Checked In'
-                        ))}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
       </>
     )
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Header from '../components/header'
 import api from '../utils/api/api'
-
+import '../assets/css/houseKeeping.css'
 class Housekeeping extends Component {
   state = {
     checked: {
@@ -25,7 +25,7 @@ class Housekeeping extends Component {
       .catch(err => console.log(err))
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.makeAxiosCall()
   }
 
@@ -36,7 +36,7 @@ class Housekeeping extends Component {
     this.setState({ searchResults }, () => {
       api
         .updateCleanStatus(this.state.searchResults[id].room_id, value)
-        .then(() => {})
+        .then(() => { })
         .catch(err => console.log(err))
     })
   }
@@ -105,26 +105,23 @@ class Housekeeping extends Component {
     event.preventDefault()
     this.makeAxiosCall()
   }
-  printFunction () {
+  printFunction() {
     window.print()
   }
 
-  render () {
+  render() {
     return (
       <>
-        <Header title='HOUSE KEEPING'/>
-        <div>
+        <Header title='HOUSE KEEPING' />
+        <div className='house-keeping-container'>
           <div>
             <div>
-              <div>
+              <h5>Room Status:</h5>
+              <div className='check-box-container'>
                 <div>
-                  <h6>Room Status:</h6>
-                </div>
-                <div>
-                  Clean
-                </div>
-                <div>
+                  <label>Clean</label>
                   <input
+                    className='check-box'
                     type='checkbox'
                     id='clean'
                     checked={this.state.checked.clean}
@@ -132,10 +129,9 @@ class Housekeeping extends Component {
                   />
                 </div>
                 <div>
-                  Dirty {this.state.rooms}
-                </div>
-                <div>
+                  <label>Dirty {this.state.rooms}</label>
                   <input
+                    className='check-box'
                     type='checkbox'
                     id='dirty'
                     checked={this.state.checked.dirty}
@@ -143,16 +139,14 @@ class Housekeeping extends Component {
                   />
                 </div>
               </div>
-
-              <div>
+              <h5> Front Office Status: </h5>
+              <div className='check-box-container'>
                 <div>
-                  <h6> Front Office Status: </h6>
-                </div>
-                <div>
-                  Vacant
-                </div>
-                <div>
+                  <label>
+                    Vacant
+                </label>
                   <input
+                    className='check-box'
                     type='checkbox'
                     id='vacant'
                     checked={this.state.checked.vacant}
@@ -160,10 +154,11 @@ class Housekeeping extends Component {
                   />
                 </div>
                 <div>
-                  Occupied
-                </div>
-                <div>
+                  <label>
+                    Occupied
+                </label>
                   <input
+                    className='check-box'
                     type='checkbox'
                     id='occupied'
                     checked={this.state.checked.occupied}
@@ -171,27 +166,26 @@ class Housekeeping extends Component {
                   />
                 </div>
               </div>
-              <div>
+              <h5> Reservation Status: </h5>
+              <div className='check-box-container'>
                 <div>
-                  <h6> Reservation Status: </h6>
-                </div>
-                <div>
-                  Arrived
-                </div>
-                <div>
+                  <label>
+                    Arrived
+                </label>
                   <input
+                    className='check-box'
                     type='checkbox'
                     id='arrived'
                     checked={this.state.checked.arrived}
                     onChange={this.handleCheckboxChange}
                   />
                 </div>
-
                 <div>
-                  Stay Over
-                </div>
-                <div>
+                  <label>
+                    Stay Over
+                </label>
                   <input
+                    className='check-box'
                     type='checkbox'
                     id='stay-over'
                     checked={this.state.checked.stayOver}
@@ -199,12 +193,13 @@ class Housekeeping extends Component {
                   />
                 </div>
               </div>
-              <div>
+              <div className='check-box-container'>
                 <div>
-                  Departed
-                </div>
-                <div>
+                  <label>
+                    Departed
+                </label>
                   <input
+                    className='check-box'
                     type='checkbox'
                     id='departed'
                     checked={this.state.checked.departed}
@@ -212,22 +207,23 @@ class Housekeeping extends Component {
                   />
                 </div>
                 <div>
-                  Due Out
-                </div>
-                <div>
+                  <label>
+                    Due Out
+                </label>
                   <input
+                    className='check-box'
                     type='checkbox'
                     id='due-out'
                     checked={this.state.checked.dueOut}
                     onChange={this.handleCheckboxChange}
                   />
                 </div>
-
                 <div>
-                  Not Reserved
-                </div>
-                <div>
+                  <label>
+                    Not Reserved
+                </label>
                   <input
+                    className='check-box'
                     type='checkbox'
                     id='not-reserved'
                     checked={this.state.checked.notReserved}
@@ -237,7 +233,7 @@ class Housekeeping extends Component {
               </div>
             </div>
 
-            <div>
+            <div className='button-container'>
               <button
                 type='button'
                 id='select-all'
@@ -295,12 +291,12 @@ class Housekeeping extends Component {
                         {room.checked_out === 1
                           ? 'Departed'
                           : room.departure
-                          ? room.departure
-                          : room.stayover
-                          ? room.stayover
-                          : room.checked_in === 1
-                          ? 'Arrived'
-                          : 'Not Reserved'}
+                            ? room.departure
+                            : room.stayover
+                              ? room.stayover
+                              : room.checked_in === 1
+                                ? 'Arrived'
+                                : 'Not Reserved'}
                       </td>
                     </tr>
                   ))}

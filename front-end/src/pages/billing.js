@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Redirect} from 'react-router-dom'
 import Header from '../components/header'
 import api from '../utils/api/api'
-
+import '../assets/css/billing.css'
 class Billing extends Component {
   state = {
     firstname: '',
@@ -131,7 +131,7 @@ class Billing extends Component {
     return (
         <>
           <Header title='FINANCE'/>
-          <div>
+          <div className='billing-container'>
             <div>
               <div>
                 <div>

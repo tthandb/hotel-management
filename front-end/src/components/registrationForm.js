@@ -1,10 +1,10 @@
 import React from 'react'
 import NumberFormat from 'react-number-format'
-
+import '../assets/css/registrationForm.css'
 class RegistrationForm extends React.Component {
   render() {
     return (
-        <form>
+        <form className='registration-form-container'>
           <div className='form-group'>
             <label htmlFor='first-name-input'>First Name</label>
             <input

@@ -1,17 +1,18 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import Header from "../components/header";
+import '../assets/css/dashboard.css'
 
 class Dashboard extends React.Component {
   render() {
     return (
         <>
           <Header title="DASHBOARD"/>
-          <ul>
-            <div>
-              <div>
+          <div className='dashboard-container'>
+            <div className='reservation-container'>
+              <h3>
                 RESERVATION
-              </div>
+              </h3>
               <div>
                 <Link to='/reserve/new'>
                   <h4>
@@ -25,11 +26,11 @@ class Dashboard extends React.Component {
                 </Link>
               </div>
             </div>
-            <div>
+            <div className='front-desk-container'>
               <div>
-                <div>
+                <h3>
                   FRONT DESK
-                </div>
+                </h3>
                 <div>
                   <Link to='/frontdesk/arrivals'>
                     <h4>Arrivals</h4>
@@ -47,11 +48,11 @@ class Dashboard extends React.Component {
                 </div>
               </div>
             </div>
-            <div>
+            <div className='finance-container'>
               <div>
-                <div>
-                  FINANCE
-                </div>
+                <h3>
+                  PAYMENT
+                </h3>
                 <div>
                   <Link to='/cashiering/billing'>
                     <h4>Billing</h4>
@@ -59,11 +60,11 @@ class Dashboard extends React.Component {
                 </div>
               </div>
             </div>
-            <div>
+            <div className='reports-container'>
               <div>
-                <div>
+                <h3>
                   REPORTS
-                </div>
+                </h3>
                 <div>
                   <Link to='/reports/housekeeping'>
                     <h4>Housekeeping Report</h4>
@@ -76,7 +77,7 @@ class Dashboard extends React.Component {
                 </div>
               </div>
             </div>
-          </ul>
+          </div>
         </>
     )
   }

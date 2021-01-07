@@ -3,7 +3,7 @@ import Header from '../components/header'
 import api from '../utils/api/api'
 import moment from 'moment'
 import DateRange from '../components/dateRange/dateRangeOrg'
-
+import '../assets/css/maintenance.css'
 class Maintenance extends Component {
   constructor () {
     super()
@@ -136,7 +136,7 @@ class Maintenance extends Component {
     return (
       <>
         <Header title='MAINTENANCE'/>
-        <div>
+        <div className='maintenance-container'>
           <div>
             <div>
               <strong>

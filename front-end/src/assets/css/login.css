@@ -1,17 +1,23 @@
-input {
-    display: block;
-    margin: auto;
-    width: 50%;
-    padding: 5px;
-}
-
-.container {
+.login-container {
     width: 700px;
     height: 700px;
-    margin:auto
+    margin: auto;
+
 }
 
-.login {
+.login-title {
+    text-align: center;
+}
+
+.username, .password {
+    width: 50%;
     display: block;
-    margin: auto
+    padding: 10px 10px;
+    margin: 20px auto;
+    box-sizing: border-box;
+}
+
+.login-btn {
+    display: block;
+    margin: auto;
 }

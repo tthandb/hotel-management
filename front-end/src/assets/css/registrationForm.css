@@ -1,0 +1,12 @@
+.registration-form-container {
+  width: 50%;
+  margin:auto
+}
+.registration-form-container input, textarea, button {
+  padding: 10px;
+  margin: 10px
+}
+
+.registration-form-container label {
+  font-weight: 500;
+}

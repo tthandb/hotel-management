@@ -1,0 +1,17 @@
+.billing-container {
+  padding: 20px;
+  margin: auto;
+  width: 50%;
+  border: 1px;
+  border-style: dashed;
+}
+
+.billing-container input, textarea, button {
+  padding: 10px;
+  margin: 10px
+}
+
+.billing-container table {
+  table-layout: auto;
+  width: 100%; 
+}
